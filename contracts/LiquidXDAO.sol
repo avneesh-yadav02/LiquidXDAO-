@@ -1,16 +1,4 @@
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
-
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
-
-/**
- * @title LiquidX DAO
- * @dev A decentralized autonomous organization for liquidity management and governance
- */
-
-// LiquidX Governance Token
+LiquidX Governance Token
 contract LiquidXToken is ERC20, Ownable {
     constructor(uint256 initialSupply) ERC20("LiquidX Token", "LQX") Ownable(msg.sender) {
         _mint(msg.sender, initialSupply * 10 ** decimals());
@@ -21,40 +9,7 @@ contract LiquidXToken is ERC20, Ownable {
     }
 }
 
-// Main DAO Contract
-contract LiquidXDAO is ReentrancyGuard {
-    LiquidXToken public governanceToken;
-    
-    struct Proposal {
-        uint256 id;
-        address proposer;
-        string description;
-        uint256 amount;
-        address payable recipient;
-        uint256 voteCount;
-        uint256 voteAgainst;
-        uint256 deadline;
-        bool executed;
-        bool exists;
-        mapping(address => bool) voters;
-    }
-    
-    struct Member {
-        address memberAddress;
-        uint256 joinDate;
-        uint256 reputation;
-        bool isActive;
-    }
-    
-    mapping(uint256 => Proposal) public proposals;
-    mapping(address => Member) public members;
-    mapping(address => uint256) public stakingBalance;
-    
-    address[] public memberList;
-    uint256 public proposalCount;
-    uint256 public constant VOTING_PERIOD = 7 days;
-    uint256 public constant QUORUM_PERCENTAGE = 51;
-    uint256 public constant MIN_STAKE_AMOUNT = 100 * 10**18; // 100 LQX tokens
+100 LQX tokens
     uint256 public treasuryBalance;
     
     event ProposalCreated(
@@ -289,3 +244,6 @@ contract LiquidXDAO is ReentrancyGuard {
         emit FundsDeposited(msg.sender, msg.value);
     }
 }
+// 
+End
+// 
