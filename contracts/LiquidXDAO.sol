@@ -172,78 +172,8 @@ contract LiquidXToken is ERC20, Ownable {
             require(success, "Transfer failed");
         }
         
-        // Increase proposer reputation
-        members[proposal.proposer].reputation += 1;
-        
-        emit ProposalExecuted(proposalId, true);
-    }
-    
-    /**
-     * @dev Deposit funds to DAO treasury
-     */
-    function depositToTreasury() external payable {
-        require(msg.value > 0, "Must send ETH");
-        treasuryBalance += msg.value;
-        emit FundsDeposited(msg.sender, msg.value);
-    }
-    
-    /**
-     * @dev Get proposal details
-     */
-    function getProposal(uint256 proposalId) external view returns (
-        uint256 id,
-        address proposer,
-        string memory description,
-        uint256 amount,
-        address recipient,
-        uint256 voteCount,
-        uint256 voteAgainst,
-        uint256 deadline,
-        bool executed
-    ) {
-        Proposal storage proposal = proposals[proposalId];
-        return (
-            proposal.id,
-            proposal.proposer,
-            proposal.description,
-            proposal.amount,
-            proposal.recipient,
-            proposal.voteCount,
-            proposal.voteAgainst,
-            proposal.deadline,
-            proposal.executed
-        );
-    }
-    
-    /**
-     * @dev Check if address has voted on proposal
-     */
-    function hasVoted(uint256 proposalId, address voter) external view returns (bool) {
-        return proposals[proposalId].voters[voter];
-    }
-    
-    /**
-     * @dev Get member count
-     */
-    function getMemberCount() external view returns (uint256) {
-        return memberList.length;
-    }
-    
-    /**
-     * @dev Get voting power of an address
-     */
-    function getVotingPower(address member) external view returns (uint256) {
-        return stakingBalance[member];
-    }
-    
-    /**
-     * @dev Receive function to accept ETH
-     */
-    receive() external payable {
-        treasuryBalance += msg.value;
-        emit FundsDeposited(msg.sender, msg.value);
-    }
-}
+        End
 // 
-End
+// 
+Contract End
 // 
